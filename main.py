@@ -12,16 +12,16 @@ class Animal(object):
 
 
 def readList(file):
-    animal: list[Animal] = []
-    question: list[str] = []
+    animals: list[Animal] = []
+    quest: list[str] = []
     with open(file) as f:
         lines = f.readlines()
         for lineCt, line in enumerate(lines):
             if 1 < lineCt < 24:
-                question.append(line)
+                quest.append(line)
             elif lineCt >= 24:
-                animal.append(Animal(line))
-    return question, animal
+                animals.append(Animal(line))
+    return quest, animals
 
 
 if __name__ == '__main__':
