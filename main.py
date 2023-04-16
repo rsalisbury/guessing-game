@@ -1,4 +1,3 @@
-
 class Animal(object):
     def __init__(self, args):
         args = args.strip("\n")
@@ -8,23 +7,23 @@ class Animal(object):
         args = args.strip("\n")
         self.__args = args.split(" ")
 
-    def get_attr(self,item):
+    def get_attr(self, item):
         return self.__args[item]
 
 
 def readList(file):
-    animal = []
-    question = []
+    animal: list[Animal] = []
+    question: list[str] = []
     with open(file) as f:
         lines = f.readlines()
         for lineCt, line in enumerate(lines):
-            if lineCt > 1 and lineCt < 24:
+            if 1 < lineCt < 24:
                 question.append(line)
             elif lineCt >= 24:
                 animal.append(Animal(line))
     return question, animal
 
-# Press the green button in the gutter to run the script.
+
 if __name__ == '__main__':
     guesses = []
     questions, zoo = readList("zoo.txt")
@@ -36,11 +35,9 @@ if __name__ == '__main__':
     for animal in zoo:
         match = True
         for idx, guess in enumerate(guesses):
-            if guess != animal.get_attr(idx+1):
-                #print("It's not a ",animal.args[0])
-                match =  False
+            if guess != animal.get_attr(idx + 1):
+                # print("It's not a ",animal.args[0])
+                match = False
                 break
         if match:
-                print(f"It could be a {animal.get_attr(0)}")
-
-
+            print(f"It could be a {animal.get_attr(0)}")
